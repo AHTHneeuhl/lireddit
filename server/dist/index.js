@@ -10,6 +10,8 @@ const main = async () => {
         type: "postgresql",
         debug: !constants_1.__prod__,
     });
+    const post = orm.em.create(post_1.Post, { title: "My fist post" });
+    await orm.em.persistAndFlush(post);
 };
 main();
 //# sourceMappingURL=index.js.map
