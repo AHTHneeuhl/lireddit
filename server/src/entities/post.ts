@@ -11,6 +11,6 @@ export class Post {
   @Property({ onUpdate: () => new Date() })
   updatedAt?: Date = new Date();
 
-  @PrimaryKey()
+  @PrimaryKey({ type: "text" })
   title!: string;
 }
