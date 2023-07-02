@@ -1,16 +1,16 @@
 import { MikroORM } from "@mikro-orm/core";
-import { Post } from "./entities/post";
+import express from "express";
 import mikroOrmConfig from "./mikro-orm.config";
 
 const main = async () => {
   const orm = await MikroORM.init(mikroOrmConfig);
   await orm.getMigrator().up();
 
-  const post = orm.em.create(Post, { title: "My fist post" });
-  await orm.em.persistAndFlush(post);
+  const app = express();
 
-  const posts = await orm.em.find(Post, {});
-  console.log(posts);
+  app.listen(process.env.PORT || 4000, () => {
+    console.log(`Server ready at http://localhost:4000`);
+  });
 
   await orm.close(true);
 };
